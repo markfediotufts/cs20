@@ -32,12 +32,13 @@ http.createServer(function (req, res) {
                 var dbo = db.db("Stock");
                 var coll = dbo.collection('PublicCompanies');
                 
+                var query = {};
                 if (type == "Ticker") {
-                        theQuery = { ticker: id }
+                        query = { ticker: id }
                 } else {
-                        theQuery = { name: id }
+                        query = { name: id }
                 }
-                coll.find().toArray(function(err, items) {
+                coll.find(query).toArray(function(err, items) {
                   if (err) {
                     console.log("Error: " + err);
                   } 
