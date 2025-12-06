@@ -29,27 +29,28 @@ http.createServer(function (req, res) {
                 console.log("Connection err: " + err); return; 
                 }
 
-                var dbo = db.db("Stock");
-                var coll = dbo.collection('PublicCompanies');
+                // var dbo = db.db("Stock");
+                // var coll = dbo.collection('PublicCompanies');
                 
-                //coll.find({},{});
-                if (type == "Ticker") {
-                        theQuery = { ticker: id }
-                } else {
-                        theQuery = { name: id }
-                }
-                coll.find().toArray(function(err, items) {
-                  if (err) {
-                    console.log("Error: " + err);
-                  } 
-                  else 
-                  {
-                    console.log("Companies matching your query: ");
-                    for (i=0; i<items.length; i++)
-                        console.log(i + ": " + items[i].name + " (" + items[i].ticker + ")");                
-                  }   
-                  db.close();
-                });  //end find     
+                // if (type == "Ticker") {
+                //         theQuery = { ticker: id }
+                // } else {
+                //         theQuery = { name: id }
+                // }
+                // coll.find().toArray(function(err, items) {
+                //   if (err) {
+                //     console.log("Error: " + err);
+                //   } 
+                //   else 
+                //   {
+                //     console.log("Companies matching your query: ");
+                //     for (i=0; i<items.length; i++)
+                //         console.log(i + ": " + items[i].name + " (" + items[i].ticker + ")");                
+                //   }   
+                //   db.close();
+                // });  //end find    
+                 
+                db.close();
             });  //end connect
         
         }
