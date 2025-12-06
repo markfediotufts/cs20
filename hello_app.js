@@ -19,8 +19,38 @@ http.createServer(function (req, res) {
   }
   else if (urlObj.pathname == "/process") {
         id = urlObj.query.id
+        type = urblObj.query.stock;
         res.write ("The id is: " + id)
-        res.end();
-        console.log('hey')
-  }
+        
+        const MongoClient = require('mongodb').MongoClient;
+        const url = "mongodb+srv://test:test@cluster0.xzre7sj.mongodb.net/?appName=Cluster0";
+        MongoClient.connect(url, { useUnifiedTopology: true }, function(err, db) {
+                if(err) { 
+                console.log("Connection err: " + err); return; 
+                }
+
+                var dbo = db.db("Stock");
+                var coll = dbo.collection('PublicCompanies');
+                
+                //coll.find({},{});
+                if (type == "Ticker") {
+                        theQuery = { ticker: id }
+                } else {
+                        theQuery = { name: id }
+                }
+                coll.find().toArray(function(err, items) {
+                  if (err) {
+                    console.log("Error: " + err);
+                  } 
+                  else 
+                  {
+                    console.log("Companies matching your query: ");
+                    for (i=0; i<items.length; i++)
+                        console.log(i + ": " + items[i].name + " (" + items[i].ticker + ")");                
+                  }   
+                  db.close();
+                });  //end find     
+            });  //end connect
+        
+        }
 }).listen(port);
