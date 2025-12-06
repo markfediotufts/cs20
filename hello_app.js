@@ -8,10 +8,15 @@ http.createServer(function (req, res) {
   urlObj = url.parse(req.url,true)
   if (urlObj.pathname == "/") 
   {
-     res.write ("Bozo2!  This app is deployed online");
+     res.write ("Success!  This app is deployed online");
      res.write("<h2>This is my hello application</h2>");
+     buttons = "<input type=\"radio\" id=\"ticker\" name=\"stock\" value=\"Ticker\">"
+     + "<label for=\"ticker\">Ticker</label><br>"
+     + "<input type=\"radio\" id=\"name\" name=\"stock\" value=\"Name\">"
+     + "<label for=\"name\">Name</label><br>";
+        res.write(buttons);
      s = "<form method='get' action='/process'>" +
-         "Enter the secret ID <input type='text' name='id'><br /><input type='submit'></form>"
+         "Enter a stock ticker symbol or a company name <input type='text' name='id'><br /><input type='submit'></form>"
      res.write(s)
      res.end()
   }
