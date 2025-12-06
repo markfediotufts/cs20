@@ -26,7 +26,9 @@ http.createServer(function (req, res) {
         const url = "mongodb+srv://test:test@cluster0.xzre7sj.mongodb.net/?appName=Cluster0";
         MongoClient.connect(url, { useUnifiedTopology: true }, function(err, db) {
                 if(err) { 
-                        console.log("Connection err: " + err); return; 
+                        console.log("Connection err: " + err); 
+                        res.end();
+                        return; 
                 }
 
                 var dbo = db.db("Stock");
