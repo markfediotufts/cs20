@@ -19,38 +19,38 @@ http.createServer(function (req, res) {
   }
   else if (urlObj.pathname == "/process") {
         id = urlObj.query.id
-        type = urblObj.query.stock;
+        type = urlObj.query.stock;
         res.write ("The id is: " + id)
         
         const MongoClient = require('mongodb').MongoClient;
         const url = "mongodb+srv://test:test@cluster0.xzre7sj.mongodb.net/?appName=Cluster0";
         MongoClient.connect(url, { useUnifiedTopology: true }, function(err, db) {
                 if(err) { 
-                console.log("Connection err: " + err); return; 
+                        console.log("Connection err: " + err); return; 
                 }
 
-                // var dbo = db.db("Stock");
-                // var coll = dbo.collection('PublicCompanies');
+                var dbo = db.db("Stock");
+                var coll = dbo.collection('PublicCompanies');
                 
-                // if (type == "Ticker") {
-                //         theQuery = { ticker: id }
-                // } else {
-                //         theQuery = { name: id }
-                // }
-                // coll.find().toArray(function(err, items) {
-                //   if (err) {
-                //     console.log("Error: " + err);
-                //   } 
-                //   else 
-                //   {
-                //     console.log("Companies matching your query: ");
-                //     for (i=0; i<items.length; i++)
-                //         console.log(i + ": " + items[i].name + " (" + items[i].ticker + ")");                
-                //   }   
-                //   db.close();
-                // });  //end find    
-                 
-                db.close();
+                if (type == "Ticker") {
+                        theQuery = { ticker: id }
+                } else {
+                        theQuery = { name: id }
+                }
+                coll.find().toArray(function(err, items) {
+                  if (err) {
+                    console.log("Error: " + err);
+                  } 
+                  else 
+                  {
+                    console.log("Companies matching your query: ");
+                    for (i=0; i<items.length; i++)
+                        console.log(i + ": " + items[i].name + " (" + items[i].ticker + ")");                
+                  }   
+                  db.close();
+                  res.end();
+                });  //end find    
+
             });  //end connect
         
         }
