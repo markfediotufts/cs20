@@ -1,5 +1,6 @@
 var http = require('http');
 var url = require('url');
+const MongoClient = require('mongodb').MongoClient;
 var port = process.env.PORT || 3000;
 //var port = 8080;   //uncomment to run local
 console.log("This goes to the console window");
@@ -22,7 +23,7 @@ http.createServer(function (req, res) {
         type = urlObj.query.stock;
         res.write ("The id is: " + id)
         
-        const MongoClient = require('mongodb').MongoClient;
+        
         const mongourl = "mongodb+srv://test:test@cluster0.xzre7sj.mongodb.net/?appName=Cluster0";
         MongoClient.connect(mongourl, { useUnifiedTopology: true }, function(err, db) {
                 if(err) { 
