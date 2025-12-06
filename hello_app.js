@@ -23,8 +23,8 @@ http.createServer(function (req, res) {
         res.write ("The id is: " + id)
         
         const MongoClient = require('mongodb').MongoClient;
-        const url = "mongodb+srv://test:test@cluster0.xzre7sj.mongodb.net/?appName=Cluster0";
-        MongoClient.connect(url, { useUnifiedTopology: true }, function(err, db) {
+        const mongourl = "mongodb+srv://test:test@cluster0.xzre7sj.mongodb.net/?appName=Cluster0";
+        MongoClient.connect(mongourl, { useUnifiedTopology: true }, function(err, db) {
                 if(err) { 
                         console.log("Connection err: " + err); 
                         res.end();
