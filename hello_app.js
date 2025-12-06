@@ -8,7 +8,7 @@ http.createServer(function (req, res) {
   urlObj = url.parse(req.url,true)
   if (urlObj.pathname == "/") 
   {
-     res.write ("Success!  This app is deployed online");
+     res.write ("Bozo2!  This app is deployed online");
      res.write("<h2>This is my hello application</h2>");
      s = "<form method='get' action='/process'>" +
          "Enter the secret ID <input type='text' name='id'><br /><input type='submit'></form>"
