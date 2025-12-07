@@ -54,7 +54,7 @@ http.createServer(function (req, res) {
                                         // writes to Heroku console
                                         console.log(i + ": " + items[i].name + " (" + items[i].ticker + ") --- $" + items[i].price); 
                                         // writes to site
-                                        res.write(`<li>${items[i].name} (${items[i].ticker})</li>`);
+                                        res.write(`<li>${items[i].name} (${items[i].ticker}) --- $${items[i].price}</li>`);
                                 }
                                 res.write("</ul>");
                         } else {
