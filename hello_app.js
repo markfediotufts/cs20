@@ -52,7 +52,7 @@ http.createServer(function (req, res) {
                                 res.write("<h3>Matching Results:</h3><ul>");
                                 for (i=0; i<items.length; i++) {
                                         // writes to Heroku console
-                                        console.log(i + ": " + items[i].name + " (" + items[i].ticker + ")"); 
+                                        console.log(i + ": " + items[i].name + " (" + items[i].ticker + ") --- $" + items[i].price); 
                                         // writes to site
                                         res.write(`<li>${items[i].name} (${items[i].ticker})</li>`);
                                 }
