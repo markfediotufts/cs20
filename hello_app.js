@@ -47,7 +47,7 @@ http.createServer(function (req, res) {
                   } 
                   else 
                   {
-                    console.log("Companies matching your query (" + query + "):\n");
+                    console.log("Companies matching your query (" + JSON.stringify(query) + "):\n");
                     for (i=0; i<items.length; i++)
                         console.log(i + ": " + items[i].name + " (" + items[i].ticker + ")");                
                   }   
