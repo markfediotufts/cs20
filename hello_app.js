@@ -21,8 +21,6 @@ http.createServer(function (req, res) {
   else if (urlObj.pathname == "/process") {
         id = urlObj.query.id
         type = urlObj.query.stock;
-        res.write ("The id is: " + id)
-        
         
         const mongourl = "mongodb+srv://test:test@cluster0.xzre7sj.mongodb.net/?appName=Cluster0";
         MongoClient.connect(mongourl, { useUnifiedTopology: true }, function(err, db) {
@@ -58,6 +56,7 @@ http.createServer(function (req, res) {
                                 }
                                 res.write("</ul>");
                         } else {
+                                console.log("No results found for that ticker/name.")
                                 res.write("<p>No results found for that ticker/name.</p>");
                     }
                 }   
