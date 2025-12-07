@@ -37,9 +37,9 @@ http.createServer(function (req, res) {
                 
                 var query = {};
                 if (type == "Ticker") {
-                        query = { ticker: id }
+                        query = { ticker : id }
                 } else {
-                        query = { name: id }
+                        query = { name : id }
                 }
                 coll.find(query).toArray(function(err, items) {
                   if (err) {
@@ -47,7 +47,7 @@ http.createServer(function (req, res) {
                   } 
                   else 
                   {
-                    console.log("Companies matching your query: ");
+                    console.log("Companies matching your query (" + query + "):\n");
                     for (i=0; i<items.length; i++)
                         console.log(i + ": " + items[i].name + " (" + items[i].ticker + ")");                
                   }   
