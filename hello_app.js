@@ -42,17 +42,27 @@ http.createServer(function (req, res) {
                         query = { name : id }
                 }
                 coll.find(query).toArray(function(err, items) {
-                  if (err) {
-                    console.log("Error: " + err);
-                  } 
-                  else 
-                  {
-                    console.log("Companies matching your query (" + JSON.stringify(query) + "):\n");
-                    for (i=0; i<items.length; i++)
-                        console.log(i + ": " + items[i].name + " (" + items[i].ticker + ")");                
-                  }   
-                  db.close();
-                  res.end();
+                if (err) {
+                        console.log("Error: " + err);
+                } 
+                else 
+                {
+                        console.log("Companies matching your query:\n");
+                        if (items.length > 0) {
+                                res.write("<h3>Matching Results:</h3><ul>");
+                                for (i=0; i<items.length; i++) {
+                                        // writes to Heroku console
+                                        console.log(i + ": " + items[i].name + " (" + items[i].ticker + ")"); 
+                                        // writes to site
+                                        res.write(`<li>${items[i].name} (${items[i].ticker})</li>`);
+                                }
+                                res.write("</ul>");
+                        } else {
+                                res.write("<p>No results found for that ticker/name.</p>");
+                    }
+                }   
+                        db.close();
+                        res.end();
                 });  //end find    
 
             });  //end connect
